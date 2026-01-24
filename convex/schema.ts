@@ -377,7 +377,8 @@ export default defineSchema({
     })
         .index("by_teacher", ["teacherId"])
         .index("by_subject", ["subject"])
-        .index("by_competency", ["competency"]),
+        .index("by_competency", ["competency"])
+        .index("by_published", ["isPublished"]),
 
     // Quiz questions
     quiz_questions: defineTable({
@@ -515,6 +516,7 @@ export default defineSchema({
             name: v.string(),
             url: v.string(),
             type: v.string(),
+            storageId: v.optional(v.id("_storage")),
         }))),
         submittedAt: v.number(),
         teacherId: v.id("users"),

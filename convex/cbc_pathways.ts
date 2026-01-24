@@ -194,22 +194,32 @@ export const getCpiProjects = query({
         isActive: v.optional(v.boolean())
     },
     handler: async (ctx, args) => {
-        let q = ctx.db.query("cpi_projects");
+        // Refactored to avoid TS error: Type 'Query' is not assignable to type 'QueryInitializer'
 
         if (args.grade) {
-            q = q.withIndex("by_grade", (q) => q.eq("grade", args.grade));
-        }
-
-        if (args.isActive !== undefined) {
-            // Note: Can't use multiple indexes easily in simple query, filtering in memory for second condition if needed or verify index usage
-            // Since we used index by_grade, we filter active. If no grade, we can use by_active
-            if (!args.grade) {
-                q = ctx.db.query("cpi_projects").withIndex("by_active", (q) => q.eq("isActive", args.isActive!));
-            } else {
-                q = q.filter((q) => q.eq(q.field("isActive"), args.isActive));
+            // Case 1: Filter by Grade (and optional Active)
+            if (args.isActive !== undefined) {
+                return await ctx.db
+                    .query("cpi_projects")
+                    .withIndex("by_grade", (q) => q.eq("grade", args.grade!))
+                    .filter((q) => q.eq(q.field("isActive"), args.isActive))
+                    .collect();
             }
+            return await ctx.db
+                .query("cpi_projects")
+                .withIndex("by_grade", (q) => q.eq("grade", args.grade!))
+                .collect();
         }
 
-        return await q.collect();
+        // Case 2: No Grade, filter by Active (using Index)
+        if (args.isActive !== undefined) {
+            return await ctx.db
+                .query("cpi_projects")
+                .withIndex("by_active", (q) => q.eq("isActive", args.isActive!))
+                .collect();
+        }
+
+        // Case 3: No filters
+        return await ctx.db.query("cpi_projects").collect();
     }
 });

@@ -29,6 +29,7 @@ import type * as challenges from "../challenges.js";
 import type * as cohorts from "../cohorts.js";
 import type * as communications from "../communications.js";
 import type * as courses from "../courses.js";
+import type * as email_templates from "../email_templates.js";
 import type * as emails from "../emails.js";
 import type * as file_upload from "../file_upload.js";
 import type * as finance from "../finance.js";
@@ -83,6 +84,7 @@ declare const fullApi: ApiFromModules<{
   cohorts: typeof cohorts;
   communications: typeof communications;
   courses: typeof courses;
+  email_templates: typeof email_templates;
   emails: typeof emails;
   file_upload: typeof file_upload;
   finance: typeof finance;
