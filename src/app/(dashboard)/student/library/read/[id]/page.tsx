@@ -5,7 +5,7 @@ import { api } from "@/convex/_generated/api";
 import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen, Download, AlertCircle } from "lucide-react";
-import { Id } from "../../../../../../convex/_generated/dataModel";
+import { Id } from "@/convex/_generated/dataModel";
 import { LibrarySkeleton } from "@/components/ui/skeleton";
 
 export default function ResourceReaderPage() {

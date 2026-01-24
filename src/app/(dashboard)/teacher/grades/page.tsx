@@ -15,7 +15,7 @@ import { LoadingAnimation } from "@/components/ui/LoadingAnimation";
 import { toast } from "sonner";
 import { Plus, BookOpen, Check } from "lucide-react";
 import { format } from "date-fns";
-import { Id } from "../../../../../../convex/_generated/dataModel";
+import { Id } from "@/convex/_generated/dataModel";
 
 export default function TeacherGradesPage() {
     const [selectedAssignment, setSelectedAssignment] = useState<string | null>(null);
