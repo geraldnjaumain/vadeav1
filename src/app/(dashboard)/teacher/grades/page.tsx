@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useQuery, useMutation } from "convex/react";
-import { api } from "../../../../../../convex/_generated/api";
+import { api } from "@/convex/_generated/api";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -176,8 +176,8 @@ export default function TeacherGradesPage() {
                                     key={assignment._id}
                                     onClick={() => setSelectedAssignment(assignment._id)}
                                     className={`w-full text-left p-3 rounded-lg border transition-all ${selectedAssignment === assignment._id
-                                            ? "border-blue-500 bg-blue-50"
-                                            : "border-zinc-200 hover:border-zinc-300"
+                                        ? "border-blue-500 bg-blue-50"
+                                        : "border-zinc-200 hover:border-zinc-300"
                                         }`}
                                 >
                                     <div className="flex items-center gap-2">

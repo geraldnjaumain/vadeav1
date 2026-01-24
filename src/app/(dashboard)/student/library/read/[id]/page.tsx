@@ -1,7 +1,7 @@
 "use client";
 
 import { useQuery } from "convex/react";
-import { api } from "../../../../../../convex/_generated/api";
+import { api } from "@/convex/_generated/api";
 import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BookOpen, Download, AlertCircle } from "lucide-react";
