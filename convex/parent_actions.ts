@@ -3,7 +3,7 @@ import { v } from "convex/values";
 import { getAuthUserId } from "@convex-dev/auth/server";
 
 // Generate a random alphanumeric password
-import { hash } from "bcryptjs";
+import { hashSync } from "bcryptjs";
 
 function generatePassword(length: number = 8): string {
     const chars = "ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789";
@@ -62,7 +62,7 @@ export const createChildAccount = mutation({
 
         // 4. Auto-generate password
         const generatedPassword = generatePassword(8);
-        const hashedPassword = await hash(generatedPassword, 10);
+        const hashedPassword = hashSync(generatedPassword, 10);
 
         // 5. Create student account
         const childId = await ctx.db.insert("users", {
